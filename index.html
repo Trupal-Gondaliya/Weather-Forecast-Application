@@ -38,6 +38,34 @@
         </div>
     </header>
 
+    <!-- Today Weather -->
+    <main class="p-10 space-y-6">
+        <section class="flex justify-between items-center bg-black/30 p-4 pb-32  rounded-xl">
+            <div id="todayWeather">
+                <h1 id="celsius" class="text-5xl font-bold">--°C</h1>
+                <p id="day-night" class="text-lg"></p>
+                <p id="weatherSituation" class="capitalize"></p>
+            </div>
+            <div class="flex space-x-6">
+                <div class="text-center">
+                    <i class="fa-solid fa-wind"></i>
+                    <p>Wind</p>
+                    <p id="wind">-- km/h</p>
+                </div>
+                <div class="text-center">
+                    <i class="fa-solid fa-droplet"></i>
+                    <p>Humidity</p>
+                    <p id="humidity">--%</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Extended Forecast -->
+        <section id="nextFiveDayHistory" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            <!-- Forecast cards -->
+        </section>
+    </main>
+
 </body>
 
 </html>
