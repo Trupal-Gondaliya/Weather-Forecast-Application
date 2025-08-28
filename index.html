@@ -15,6 +15,29 @@
 
 <body>
 
+    <!-- Header -->
+    <header class="flex justify-between items-center p-6 bg-black/40 rounded-xl">
+        <h1 class="text-2xl font-bold">Weather Forecast</h1>
+
+        <div class="flex items-center space-x-3">
+            <!-- Search -->
+            <div class="bg-white rounded-2xl flex items-center px-2">
+                <input id="searchbar" type="text" placeholder="Search city"
+                    class="p-1 text-black outline-none bg-transparent">
+                <i id="searchIcon" class="fa-solid fa-magnifying-glass text-black cursor-pointer"></i>
+            </div>
+
+            <!-- History -->
+            <div class="relative">
+                <i id="historyIcon" class="fa-solid fa-caret-down text-white cursor-pointer hidden"></i>
+                <ul id="historyDropdown" class="absolute right-0 mt-2 bg-white text-black rounded hidden w-40"></ul>
+            </div>
+
+            <!-- Current Location -->
+            <i id="CurrentLocation" class="fa-solid fa-location-crosshairs cursor-pointer"></i>
+        </div>
+    </header>
+
 </body>
 
 </html>
