@@ -6,7 +6,8 @@ let historyIcon = document.getElementById("historyIcon");
 let historyDropdown = document.getElementById("historyDropdown");
 
 let celsius = document.getElementById("celsius");
-let dayNight = document.getElementById("day-night");
+let dayNightIcon = document.getElementById("dayNightIcon");
+let dayNightText = document.getElementById("dayNightText");
 let weatherSituation = document.getElementById("weatherSituation");
 let wind = document.getElementById("wind");
 let humidity = document.getElementById("humidity");
@@ -44,13 +45,14 @@ function getDayOrNight(data) {
   const sunrise = (data.sys.sunrise + timezoneOffset) * 1000;
   const sunset = (data.sys.sunset + timezoneOffset) * 1000;
 
-  if(localTime >= sunrise && localTime < sunset) {
-    dayNight.className = "fa-solid fa-moon",
-    dayNight.textContent ="Day";
-  }
-  else{
-    dayNight.className = "fa-solid fa-sun",
-    dayNight.textContent ="Night";
+  if (localTime >= sunrise && localTime < sunset) {
+    // Daytime
+    dayNightIcon.className = "fa-solid fa-sun text-yellow-400"; 
+    dayNightText.textContent = "Day";  
+  } else {
+    // Nighttime
+    dayNightIcon.className = "fa-solid fa-moon text-blue-400"; 
+    dayNightText.textContent = "Night"; 
   }
 }
 

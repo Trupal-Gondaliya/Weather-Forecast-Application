@@ -43,7 +43,10 @@
         <section class="flex justify-between items-center bg-black/30 p-4 pb-32  rounded-xl">
             <div id="todayWeather">
                 <h1 id="celsius" class="text-5xl font-bold">--°C</h1>
-                <p id="day-night" class="text-lg"></p>
+                <div id="day-night" class="flex items-center gap-2 text-lg">
+                    <i id="dayNightIcon" class="fa-solid fa-sun"></i>
+                    <span id="dayNightText"></span>
+                </div>
                 <p id="weatherSituation" class="capitalize"></p>
             </div>
             <div class="flex space-x-6">
