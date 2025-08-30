@@ -66,6 +66,8 @@ function updateTodayWeather(data){
     wind.textContent = `${data.wind.speed} km/h`;
     humidity.textContent = `${data.main.humidity}%`;
 
+    currentTemp = data.main.temp;
+
     // Change background based on weather
     if (data.weather[0].description.toLowerCase().includes("cloud")) 
         { document.body.style.backgroundImage = "url('Weather-Background.jpg')"; } 
@@ -208,3 +210,27 @@ function getWeatherIcon(condition) {
   if (condition.includes("snow")) return "snowflake";
   return "smog";
 }
+
+// toggle unit 
+let isCelsius = true;
+let currentTemp = null;
+
+function celsiusToFahrenheit(c) {
+    return (c * 9/5) + 32;
+}
+
+function renderTemperature() {
+    if (isCelsius) {
+        celsius.textContent = `${Math.round(currentTemp)}°C`;
+        toggleUnit.textContent = "Switch to °F";
+    } else {
+        celsius.textContent = `${Math.round(celsiusToFahrenheit(currentTemp))}°F`;
+        toggleUnit.textContent = "Switch to °C";
+    }
+}
+
+// Toggle button click
+toggleUnit.addEventListener("click", () => {
+    isCelsius = !isCelsius;
+    renderTemperature();
+});
