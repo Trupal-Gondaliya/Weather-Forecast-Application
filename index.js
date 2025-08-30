@@ -68,14 +68,16 @@ function updateTodayWeather(data){
     if (data.weather[0].description.toLowerCase().includes("cloud")) 
         { document.body.style.backgroundImage = "url('Weather-Background.jpg')"; } 
     else if(data.weather[0].description.toLowerCase().includes("rain")) 
-        { document.body.style.backgroundImage = "url('Weather-Background.jpg')"; } 
+        { document.body.style.backgroundImage = "url('rain.jpg')"; } 
     else if(data.weather[0].description.toLowerCase().includes("Thunderstorm")) 
-        { document.body.style.backgroundImage = "url('Weather-Background.jpg')"; } 
+        { document.body.style.backgroundImage = "url('Thunderstorm.jpg')"; } 
     else if(data.weather[0].description.toLowerCase().includes("Snow")) 
-        { document.body.style.backgroundImage = "url('Weather-Background.jpg')"; } 
+        { document.body.style.backgroundImage = "url('snow.jpg')"; } 
     else if(data.weather[0].description.toLowerCase().includes("Mist")) 
-        { document.body.style.backgroundImage = "url('Weather-Background.jpg')"; }
-    else { document.body.style.backgroundImage = "url('Weather-Background.jpg')"; }
+        { document.body.style.backgroundImage = "url('Mist.jpg')"; }
+    else if(data.weather[0].description.toLowerCase().includes("clear")) 
+        { document.body.style.backgroundImage = "url('clearSky.jpg')"; }
+    else { document.body.style.backgroundImage = "url('sun.jpg')"; }
 
     // Extreme temperature alert
     if (data.main.temp > 40) {
