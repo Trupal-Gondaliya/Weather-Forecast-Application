@@ -4,6 +4,7 @@ let searchIcon = document.getElementById("searchIcon");
 let CurrentLocation = document.getElementById("CurrentLocation");
 let historyIcon = document.getElementById("historyIcon");
 let historyDropdown = document.getElementById("historyDropdown");
+let logo = document.getElementById("logo");
 
 let celsius = document.getElementById("celsius");
 let dayNightIcon = document.getElementById("dayNightIcon");
@@ -84,6 +85,8 @@ function updateTodayWeather(data){
     if (data.main.temp > 40) {
         alert("Extreme Heat Alert: Stay Hydrated!");
     }
+
+    logo.textContent = `Weather Forecast - ${data.name}`;
 }
 
 // Save search history
@@ -179,14 +182,17 @@ async function fetchForecast(city) {
 
   Object.values(daily).slice(0, 5).forEach(item => {
     const card = document.createElement("div");
-    card.className = "bg-black/40 p-3 rounded-xl text-center";
+    card.className = "bg-black/40 p-2 rounded-xl text-center forecastCard";
     card.innerHTML = `
-      <h3 class="text-xl font-bold">${Math.round(item.main.temp)}°C</h3>
-      <i class="fa-solid fa-${getWeatherIcon(item.weather[0].main)} text-2xl"></i>
+      <div class="flex items-center justify-evenly lg:flex-col">
+      <div>
+        <h3 class="text-xl font-bold">${Math.round(item.main.temp)}°C</h3>
+        <i class="fa-solid fa-${getWeatherIcon(item.weather[0].main)} text-2xl"></i>
+      </div>
       <div class="mt-2">
-        <p><i class="fa-solid fa-wind"></i> ${item.wind.speed} km/h</p>
+        <p><i class="fa-solid fa-wind text-blue-900 text-xl"></i> ${item.wind.speed} km/h</p>
         <p><i class="fa-solid fa-droplet"></i> ${item.main.humidity}%</p>
-        <p>${new Date(item.dt_txt).toLocaleDateString("en-US", { weekday: "long" })}</p>
+        <p class="text-yellow-300 text-xl font-bold mt-3">${new Date(item.dt_txt).toLocaleDateString("en-US", { weekday: "long" })}</p>
         <p>${new Date(item.dt_txt).toLocaleDateString("en-US", { day: "numeric", month: "short", year: "numeric" })}</p>
       </div>`;
     forecastContainer.appendChild(card);

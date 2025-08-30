@@ -8,6 +8,9 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Vanila css link -->
+    <link rel="stylesheet" href="style.css">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -16,8 +19,8 @@
 <body class="bg-cover bg-center text-white min-h-screen" style="background-image: url('Weather-Background.jpg');">
 
     <!-- Header -->
-    <header class="flex justify-between items-center p-6 bg-black/40 rounded-xl">
-        <h1 class="text-2xl font-bold">Weather Forecast</h1>
+    <header class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 p-6 bg-black/40 rounded-xl">
+        <h1 class="text-2xl font-bold" id="logo">Weather Forecast -</h1>
 
         <div class="flex items-center space-x-3">
             <!-- Search -->
@@ -28,8 +31,8 @@
             </div>
 
             <!-- History -->
-            <div class="relative">
-                <i id="historyIcon" class="fa-solid fa-caret-down text-white cursor-pointer hidden"></i>
+            <div class="relative z-50">
+                <i id="historyIcon" class="fa-solid fa-caret-down text-white cursor-pointer hidden text-2xl"></i>
                 <ul id="historyDropdown" class="absolute right-0 mt-2 bg-white text-black rounded hidden w-40"></ul>
             </div>
 
@@ -39,8 +42,8 @@
     </header>
 
     <!-- Today Weather -->
-    <main class="p-10 space-y-6">
-        <section class="flex justify-between items-center bg-black/30 p-4 pb-32  rounded-xl">
+    <main class="p-10 space-y-6 max-sm:p-16">
+        <section class="flex flex-col md:flex-row justify-between items-center bg-black/30 p-7 pb-20 rounded-xl maincontainer gap-6">
             <div id="todayWeather">
                 <h1 id="celsius" class="text-5xl font-bold">--°C</h1>
                 <div id="day-night" class="flex items-center gap-2 text-lg">
@@ -49,22 +52,22 @@
                 </div>
                 <p id="weatherSituation" class="capitalize"></p>
             </div>
-            <div class="flex space-x-6">
+            <div class="flex space-x-14">
                 <div class="text-center">
-                    <i class="fa-solid fa-wind"></i>
-                    <p>Wind</p>
+                    <i class="fa-solid fa-wind text-4xl"></i>
+                    <p class="text-2xl">Wind</p>
                     <p id="wind">-- km/h</p>
                 </div>
                 <div class="text-center">
-                    <i class="fa-solid fa-droplet"></i>
-                    <p>Humidity</p>
+                    <i class="fa-solid fa-droplet text-4xl"></i>
+                    <p class="text-2xl">Humidity</p>
                     <p id="humidity">--%</p>
                 </div>
             </div>
         </section>
 
         <!-- Extended Forecast -->
-        <section id="nextFiveDayHistory" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <section id="nextFiveDayHistory" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
             <!-- Forecast cards -->
         </section>
     </main>
