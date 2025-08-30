@@ -115,9 +115,32 @@ historyIcon.addEventListener("click", () => {
 });
 
 // Search events
-searchIcon.addEventListener("click", () => fetchWeather(searchbar.value));
+const cancelBtn = document.createElement("i");
+cancelBtn.className = "fa-solid fa-xmark text-black cursor-pointer hidden ml-2";
+cancelBtn.style.display = "none";
+searchbar.parentElement.appendChild(cancelBtn);
+
+searchbar.addEventListener("input", () => {
+  cancelBtn.style.display = searchbar.value ? "block" : "none";
+});
+
+cancelBtn.addEventListener("click", () => {
+  searchbar.value = "";
+  cancelBtn.style.display = "none";
+  searchbar.focus();
+});
+
+searchIcon.addEventListener("click", () => {
+  fetchWeather(searchbar.value);
+  searchbar.value = "";
+  cancelBtn.style.display = "none";
+});
 searchbar.addEventListener("keypress", e => {
-  if (e.key === "Enter") fetchWeather(searchbar.value);
+  if (e.key === "Enter") {
+    fetchWeather(searchbar.value);
+    searchbar.value = "";
+    cancelBtn.style.display = "none";
+  }
 });
 
 // Current location
