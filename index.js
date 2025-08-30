@@ -32,6 +32,7 @@ async function fetchWeather(city){
         updateTodayWeather(data);
         saveHistory(city);
         renderHistory(); 
+        fetchForecast(city);
     }
     catch(error){
         alert(error.message);
@@ -136,5 +137,45 @@ document.addEventListener("DOMContentLoaded", () => {
     const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`);
     const data = await res.json();
     updateTodayWeather(data);
+    fetchForecast(data.name);
   });
 });
+
+// Fetch 5-day forecast weather
+async function fetchForecast(city) {
+  const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`);
+  const data = await res.json();
+
+  forecastContainer.innerHTML = "";
+  const daily = {};
+
+  data.list.forEach(item => {
+    const date = item.dt_txt.split(" ")[0];
+    if (!daily[date]) daily[date] = item;
+  });
+
+  Object.values(daily).slice(0, 5).forEach(item => {
+    const card = document.createElement("div");
+    card.className = "bg-black/40 p-3 rounded-xl text-center";
+    card.innerHTML = `
+      <h3 class="text-xl font-bold">${Math.round(item.main.temp)}°C</h3>
+      <i class="fa-solid fa-${getWeatherIcon(item.weather[0].main)} text-2xl"></i>
+      <div class="mt-2">
+        <p><i class="fa-solid fa-wind"></i> ${item.wind.speed} km/h</p>
+        <p><i class="fa-solid fa-droplet"></i> ${item.main.humidity}%</p>
+        <p>${new Date(item.dt_txt).toLocaleDateString("en-US", { weekday: "long" })}</p>
+        <p>${new Date(item.dt_txt).toLocaleDateString("en-US", { day: "numeric", month: "short", year: "numeric" })}</p>
+      </div>`;
+    forecastContainer.appendChild(card);
+  });
+}
+
+// Get icon based on condition
+function getWeatherIcon(condition) {
+  condition = condition.toLowerCase();
+  if (condition.includes("cloud")) return "cloud";
+  if (condition.includes("rain")) return "cloud-showers-heavy";
+  if (condition.includes("clear")) return "sun";
+  if (condition.includes("snow")) return "snowflake";
+  return "smog";
+}
